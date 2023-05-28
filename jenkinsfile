@@ -23,8 +23,9 @@ pipeline{
                 }
             }
             steps{
-
-
+                sh"""
+                docker push kandulanithin/nithindatascience --all-tags
+                """
             }
         }
     }
