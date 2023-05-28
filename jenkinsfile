@@ -8,7 +8,7 @@ pipeline{
                 }
             }
             steps{
-                sh"""
+                bat"""
                 docker build --no-cache -t testdemo:latest ./fast-api
                 docker tag testdemo:latest kandulanithin/nithindatascience:latest
                 docker tag testdemo:latest kandulanithin/nithindatascience:d3r2-1
