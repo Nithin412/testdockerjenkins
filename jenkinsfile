@@ -8,13 +8,18 @@ pipeline{
                 }
             }
             steps{
-
+                sh"""
+                docker build --no-cache -t testdemo:latest ./fast-api
+                docker tag testdemo:latest kandulanithin/nithindatascience:latest
+                docker tag testdemo:latest kandulanithin/nithindatascience:d3r2-1
+                docker image ls
+                """
             }
         }
         stage("Push docker image to docker hub"){
             when{
                 expression{
-                    return params.PUSH_IMAGE
+                    return params.PUSH_IMAGE;
                 }
             }
             steps{
