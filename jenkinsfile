@@ -24,10 +24,10 @@ pipeline{
             }
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
-                bat"""
-                echo %DOCKER_PASSWORD% | docker login --username %DOCKER_USERNAME% --password-stdin
-                docker push kandulanithin/nithindatascience --all-tags
-                """
+                    bat"""
+                    echo %DOCKER_PASSWORD% | docker login --username %DOCKER_USERNAME% --password-stdin
+                    docker push kandulanithin/nithindatascience --all-tags
+                    """
                 }
             }
         }
