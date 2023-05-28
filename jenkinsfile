@@ -1,5 +1,8 @@
 pipeline{
     agent any
+    environment{
+        DOCKER_CREDENTIALS = credentials('dockerhub')
+    }
     stages{
         stage("Build docker image"){
             when{
@@ -23,12 +26,11 @@ pipeline{
                 }
             }
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]){
                 bat"""
-                docker login --username DOCKER_USERNAME --password DOCKER_PASSWORD
+                docker login --username DOCKER_CREDENTIALS_USR --password-stdin 
                 docker push kandulanithin/nithindatascience --all-tags
-                """
-                }
+                docker logout
+                """  
             }
         }
     }
