@@ -27,7 +27,7 @@ pipeline{
             }
             steps{
                 bat"""
-                docker login --username DOCKER_CREDENTIALS_USR --password-stdin 
+                echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKER_CREDENTIALS_USR --password-stdin 
                 docker push kandulanithin/nithindatascience --all-tags
                 docker logout
                 """  
